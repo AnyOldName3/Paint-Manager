@@ -6,8 +6,8 @@ public class Equivalence
 	private String paintNo;
 	private String manu;
 	
-	private ArrayList<String> manus = new ArrayList<String>();
-	private ArrayList<String> numbers = new ArrayList<String>();
+	private ArrayList<String> manus;
+	private ArrayList<String> numbers;
 	
 	public Equivalence(String num, String man, String[] mans, String[] nums)
 	{
@@ -15,6 +15,25 @@ public class Equivalence
 		manu = man;
 		manus = new ArrayList<String>(Arrays.asList(mans));
 		numbers = new ArrayList<String>(Arrays.asList(nums));
+	}
+	
+	public Equivalence(String num, String man, String equMan, String equNum)
+	{
+		paintNo = num;
+		manu = man;
+		manus = new ArrayList<String>();
+		numbers = new ArrayList<String>();
+		addEquiv(equMan, equNum);
+	}
+	
+	public Equivalence(String pntID, String equID)
+	{
+		String[] pntEle = pntID.split("-");
+		manu = pntEle[0];
+		paintNo = pntEle[1];
+		manus = new ArrayList<String>();
+		numbers = new ArrayList<String>();
+		addEquiv(equID);
 	}
 	
 	public Equivalence(String str)

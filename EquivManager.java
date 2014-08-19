@@ -49,9 +49,51 @@ public class EquivManager
 	
 	public void addEquiv(String pOne, String pTwo)
 	{
-		Equivalence equ = equivs.get(pOne);
-		equ.addEquiv(pTwo);
-		equ = equivs.get(pTwo);
-		equ.addEquiv(pOne);
+		Equivalence equ;
+		if(equivs.containsKey(pOne))
+		{
+			equ = equivs.get(pOne);
+			equ.addEquiv(pTwo);
+		}
+		else
+		{
+			equ = new Equivalence(pOne, pTwo);
+			equivs.put(pOne, equ);
+		}
+		if(equivs.containsKey(pTwo))
+		{
+			equ = equivs.get(pTwo);
+			equ.addEquiv(pOne);
+		}
+		else
+		{
+			equ = new Equivalence(pTwo, pOne);
+			equivs.put(pTwo, equ);
+		}
+	}
+	
+	public void addEquiv(String manOne, String numOne, String manTwo, String numTwo)
+	{
+		Equivalence equ;
+		if(equivs.containsKey(manOne+"-"+numOne))
+		{
+			equ = equivs.get(manOne+"-"+numOne);
+			equ.addEquiv(manTwo, numTwo);
+		}
+		else
+		{
+			equ = new Equivalence(numOne, manOne, manTwo, numTwo);
+			equivs.put(manOne+"-"+numOne, equ);
+		}
+		if(equivs.containsKey(manTwo+"-"+numTwo))
+		{
+			equ = equivs.get(manTwo+"-"+numTwo);
+			equ.addEquiv(manOne, numOne);
+		}
+		else
+		{
+			equ = new Equivalence(numTwo, manTwo, manOne, numOne);
+			equivs.put(manTwo+"-"+numTwo, equ);
+		}
 	}
 }
