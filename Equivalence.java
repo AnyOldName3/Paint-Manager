@@ -61,6 +61,12 @@ public class Equivalence
 		numbers.add(i, num);
 	}
 	
+	public void addEquiv(String pntID)
+	{
+		String[] manNum = pntID.split("-");
+		addEquiv(manNum[0], manNum[1]);
+	}
+	
 	public String[] getEquiv(String man)
 	{
 		ArrayList<String> matches = new ArrayList<String>();
